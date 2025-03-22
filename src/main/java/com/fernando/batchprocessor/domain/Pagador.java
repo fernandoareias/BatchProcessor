@@ -3,24 +3,16 @@ package com.fernando.batchprocessor.domain;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "pagadores")
 public class Pagador {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codId;
 
-    @Column(name = "dta_criado", nullable = false, updatable = false)
     private LocalDateTime dataCriado;
 
-    @Column(name = "dta_atualizado", nullable = false)
     private LocalDateTime dataAtualizado;
 
-    @Column(name = "cpf", length = 11, unique = true, nullable = false)
     private String cpf;
 
-    @Column(name = "nome", length = 255)
     private String nome;
 
     // Getters e Setters

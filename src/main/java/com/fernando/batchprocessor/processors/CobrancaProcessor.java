@@ -1,6 +1,7 @@
 package com.fernando.batchprocessor.processors;
 
 import com.fernando.batchprocessor.domain.Cobranca;
+import com.fernando.batchprocessor.domain.CobrancaBuilder;
 import com.fernando.batchprocessor.domain.Transacao;
 import com.fernando.batchprocessor.writers.CobrancaDatabaseWriter;
 import org.slf4j.Logger;
@@ -14,11 +15,14 @@ public class CobrancaProcessor implements ItemProcessor<Transacao, Cobranca> {
 
     @Override
     public Cobranca process(Transacao item) throws Exception {
-        var cobranca = new Cobranca();
-        cobranca.setCodigoCobranca(item.getCodigoTransacao());
-        cobranca.setPagadorCpf(item.getPagadorCpf());
-        cobranca.setRecebedorCpf(item.getRecebedorCpf());
-        cobranca.setValorCobranca(item.getValorTransacao());
-        return cobranca;
+
+        return new CobrancaBuilder()
+                .setCodigoCobranca(item.getCodigoTransacao())
+                .setValorCobranca(item.getValorTransacao())
+                .setPagadorCpf(item.getPagadorCpf())
+                .setRecebedorCpf(item.getRecebedorCpf())
+                .setPagadorNome("Pagador " + item.getPagadorCpf())
+                .setRecebedorNome("Recebedor " + item.getRecebedorCpf())
+                .build();
     }
 }

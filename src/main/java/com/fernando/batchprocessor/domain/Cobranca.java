@@ -4,30 +4,21 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "cobranca")
+
 public class Cobranca {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codId;
 
-    @Column(name = "dta_criado", nullable = false, updatable = false)
     private LocalDateTime dataCriado;
 
-    @Column(name = "dta_atualizado", nullable = false)
     private LocalDateTime dataAtualizado;
 
-    @Column(name = "codigo_cobranca", length = 15, unique = true, nullable = false)
     private String codigoCobranca;
 
-    @Column(name = "pagador_cpf", length = 11, nullable = false)
-    private String pagadorCpf;
+    private Pagador pagador;
 
-    @Column(name = "recebedor_cpf", length = 11, nullable = false)
-    private String recebedorCpf;
+    private Recebedor recebedor;
 
-    @Column(name = "valor_cobranca", precision = 15, scale = 2, nullable = false)
     private BigDecimal valorCobranca;
 
     // Getters e Setters
@@ -63,27 +54,27 @@ public class Cobranca {
         this.codigoCobranca = codigoCobranca;
     }
 
-    public String getPagadorCpf() {
-        return pagadorCpf;
-    }
-
-    public void setPagadorCpf(String pagadorCpf) {
-        this.pagadorCpf = pagadorCpf;
-    }
-
-    public String getRecebedorCpf() {
-        return recebedorCpf;
-    }
-
-    public void setRecebedorCpf(String recebedorCpf) {
-        this.recebedorCpf = recebedorCpf;
-    }
-
     public BigDecimal getValorCobranca() {
         return valorCobranca;
     }
 
     public void setValorCobranca(BigDecimal valorCobranca) {
         this.valorCobranca = valorCobranca;
+    }
+
+    public Pagador getPagador() {
+        return pagador;
+    }
+
+    public Recebedor getRecebedor() {
+        return recebedor;
+    }
+
+    public void setPagador(Pagador pagador) {
+        this.pagador = pagador;
+    }
+
+    public void setRecebedor(Recebedor recebedor) {
+        this.recebedor = recebedor;
     }
 }

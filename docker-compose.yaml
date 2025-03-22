@@ -5,8 +5,24 @@ services:
     image: postgres
     environment:
       POSTGRES_PASSWORD: "Postgres2025!"
+      POSTGRES_USER: "postgres" # Adicionado para clareza
+      POSTGRES_DB: "postgres"   # Banco de dados padrão
     ports:
       - "5432:5432"
+    networks:
+      - treinamento
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@example.com"
+      PGADMIN_DEFAULT_PASSWORD: "PgAdmin2025!"
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+    networks:
+      - treinamento
 
 networks:
   treinamento:
